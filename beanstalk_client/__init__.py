@@ -9,9 +9,9 @@ class Pusher(threading.Thread):
     running = True
     tube = None
 
-    def __init__(self, tube, host="localhost"):
+    def __init__(self, tube, host="localhost", port=11300):
         threading.Thread.__init__(self)
-        self.beans = beanstalkc.Connection(host)
+        self.beans = beanstalkc.Connection(host=host, port=port)
         self.connect()
         self.beans.use(tube)
         self.tube = tube
